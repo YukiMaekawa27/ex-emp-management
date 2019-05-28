@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository;
 import jp.co.sample.domain.Employee;
 
 /**
+ * 従業員テーブルを操作するリポジトリ.
+ * 
  * @author yuki
  *
  */
@@ -46,7 +48,8 @@ public class EmployeeRepository {
 	 * @return employeeList 従業員リスト
 	 */
 	public List<Employee> findAll(){
-		String sql = "select * from employees order by hire_date;";
+		String sql = "select id,name,image,gender,hire_date,mail_address,telephone,salary,characteristics,dependents_count "
+				   + "from employees order by hire_date;";
 		List<Employee> emloyeeList = template.query(sql, EMPLOYEE_ROW_MAPPER);
 		return emloyeeList;
 	}
@@ -57,7 +60,8 @@ public class EmployeeRepository {
 	 * @return employee
 	 */
 	public Employee load(Integer id) {
-		String sql = "select * from employees where id=:id;";
+		String sql = "select id,name,image,gender,hire_date,mail_address,telephone,salary,characteristics,dependents_count "
+				    + "from employees where id=:id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		Employee employee = template.queryForObject(sql, param, EMPLOYEE_ROW_MAPPER);
 		return employee;
@@ -70,7 +74,8 @@ public class EmployeeRepository {
 	public void update(Employee employee) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
 		String sql = "update employees "
-				+ "set id=:id,name=:name,image=:image,gender=:gender,hire_date=:hireDate,mail_address=:mailAddress,zip_code=:zipCode,address=:address,telephone=:telephone,salary=:salary,characteristics=:characteristics,dependents_count=:dependentsCount;";
+			 	   + "set name=:name,image=:image,gender=:gender,hire_date=:hireDate,mail_address=:mailAddress,zip_code=:zipCode,address=:address,telephone=:telephone,salary=:salary,characteristics=:characteristics,dependents_count=:dependentsCount"
+				   + " where id=:id;";
 		template.update(sql, param);
 	}
 

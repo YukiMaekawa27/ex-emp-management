@@ -1,6 +1,7 @@
 package jp.co.sample.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -34,12 +35,12 @@ public class AdministratorRepository {
 	/**
 	 * 管理者情報を登録する.
 	 * 
-	 * @param administrator 管理者情報　
+	 * @param administrator 管理者情報
 	 */
 	public void insert(Administrator administrator) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
 		String sql = "insert into administrators (name, mail_address, password) "
-				   + "values ( :name,:mailAddress,:password)";
+				+ "values ( :name,:mailAddress,:password)";
 		template.update(sql, param);
 	}
 
@@ -47,18 +48,20 @@ public class AdministratorRepository {
 	 * メールアドレス、パスワードから管理者情報を検索.
 	 * 
 	 * @param mailAddress メールアドレス
-	 * @param password パスワード
+	 * @param password    パスワード
 	 * @return administrator 管理者情報
 	 */
 	public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
-		String sql = "select id,name,mail_address,password "
-				   + "from administrator "
-				   + "where mail_address=:mailAddress and password=:password;";
-		SqlParameterSource param = new MapSqlParameterSource()
-				.addValue("mailAddress", mailAddress)
-				.addValue("password", password);
-		Administrator administorator 
-				= template.queryForObject(sql, param, ADMINISTRATOR_ROW_MAPPER);
-		return administorator;
+		String sql = "select id,name,mail_address,password " + "from administrators "
+				+ "where mail_address=:mailAddress and password=:password;";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress).addValue("password",
+				password);
+		try {
+			Administrator administorator = 
+					template.queryForObject(sql, param, ADMINISTRATOR_ROW_MAPPER);
+			return administorator;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 }
