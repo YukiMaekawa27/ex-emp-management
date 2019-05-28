@@ -44,7 +44,7 @@ public class AdministratorController {
 	 * 入力された情報をデータベースへ挿入する
 	 * 
 	 * @param form
-	 * @return /へリダイレクト処理を行う
+	 * @return "/"へリダイレクト処理を行う
 	 */
 	@RequestMapping("/insert")
 	public String insert(InsertAdministratorForm form) {
