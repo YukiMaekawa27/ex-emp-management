@@ -42,8 +42,9 @@ public class AdministratorController {
 	}
 
 	/**
-	 * 最初の入力画面へ遷移.
-	 * @return 入力画面
+	 * 管理者情報登録画面へ遷移.
+	 * 
+	 * @return 管理者情報登録画面
 	 */
 	@RequestMapping("/toInsert")
 	public String toInsert() {
@@ -51,10 +52,10 @@ public class AdministratorController {
 	}
 
 	/**
-	 * データベースへ挿入.
+	 * 管理者情報を登録する.
 	 * 
-	 * @param form
-	 * @return リダイレクト処理
+	 * @param form　リクエストパラメータを受け取るフォーム
+	 * @return ログイン画面へリダイレクト
 	 */
 	@RequestMapping("/insert")
 	public String insert(InsertAdministratorForm form) {
@@ -65,9 +66,9 @@ public class AdministratorController {
 	}
 
 	/**
-	 * 管理者登録画面へ遷移.
+	 * ログイン画面へ遷移.
 	 * 
-	 * @return 管理者登録画面
+	 * @return ログイン画面
 	 */
 	@RequestMapping("/")
 	public String toLogin(Model model) {
