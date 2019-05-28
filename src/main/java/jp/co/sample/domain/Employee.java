@@ -4,17 +4,29 @@ import java.sql.Date;
 
 public class Employee {
 
+	/** ID */
 	private Integer id;
+	/** 名前 */
 	private String name;
+	/** 画像 */
 	private String image;
+	/** 性別 */
 	private String gender;
+	/** 入社日 */
 	private Date hireDate;
+	/** メールアドレス */
 	private String mailAddress;
+	/** 郵便番号 */
 	private String zipCode;
+	/** 住所 */
 	private String address;
+	/** 電話番号 */
 	private String telephone;
+	/** 給与 */
 	private Integer salary;
+	/** 性格 */
 	private String characteristics;
+	/** 不要人数 */
 	private Integer dependentsCount;
 
 	@Override

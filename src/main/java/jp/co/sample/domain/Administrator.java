@@ -2,10 +2,20 @@ package jp.co.sample.domain;
 
 public class Administrator {
 
+	/** ID */
 	private Integer id;
+	/** 名前 */
 	private String name;
+	/** メールアドレス */
 	private String mailAddress;
+	/** パスワード */
 	private String password;
+
+	@Override
+	public String toString() {
+		return "Administrator [id=" + id + ", name=" + name + ", mailAddress=" + mailAddress + ", password=" + password
+				+ "]";
+	}
 
 	public Integer getId() {
 		return id;
@@ -38,11 +48,4 @@ public class Administrator {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	@Override
-	public String toString() {
-		return "Administrator [id=" + id + ", name=" + name + ", mailAddress=" + mailAddress + ", password=" + password
-				+ "]";
-	}
-
 }

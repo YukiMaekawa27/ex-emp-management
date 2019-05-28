@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.sample.domain.Administrator;
 import jp.co.sample.form.InsertAdministratorForm;
+import jp.co.sample.form.LoginForm;
 import jp.co.sample.service.AdministratorService;
 
 /**
@@ -17,15 +18,20 @@ import jp.co.sample.service.AdministratorService;
 @Controller
 @RequestMapping("/administrator")
 public class AdministratorController {
-	
+
 	@Autowired
 	private AdministratorService service;
-	
+
 	@ModelAttribute
 	public InsertAdministratorForm setUpInsertAdministratorForm() {
 		return new InsertAdministratorForm();
 	}
-	
+
+	@ModelAttribute
+	public LoginForm setUpLoginForm() {
+		return new LoginForm();
+	}
+
 	/**
 	 * @return 最初の入力画面を表示させる
 	 */
@@ -33,8 +39,7 @@ public class AdministratorController {
 	public String toInsert() {
 		return "administrator/insert";
 	}
-	
-	
+
 	/**
 	 * 入力された情報をデータベースへ挿入する
 	 * 
@@ -46,7 +51,15 @@ public class AdministratorController {
 		Administrator administrator = new Administrator();
 		BeanUtils.copyProperties(form, administrator);
 		service.insert(administrator);
-		return "redirect:/";
+		return "redirect:/administrator/";
+	}
+
+	/**
+	 * @return リダイレクトされたパスを受け取りlognin．htmlにフォアードする
+	 */
+	@RequestMapping("/")
+	public String toLogin() {
+		return "administrator/login.html";
 	}
 
 }
