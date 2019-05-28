@@ -2,6 +2,12 @@ package jp.co.sample.domain;
 
 import java.sql.Date;
 
+/**
+ * 従業員を表すドメイン.
+ * 
+ * @author yuki
+ *
+ */
 public class Employee {
 
 	/** ID */

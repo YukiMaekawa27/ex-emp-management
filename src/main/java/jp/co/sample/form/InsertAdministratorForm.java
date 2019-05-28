@@ -1,7 +1,8 @@
 package jp.co.sample.form;
 
 /**
- * 管理者のフォーム
+ * 管理者情報登録時に使われるフォームクラス.
+ * 
  * @author yuki
  *
  */

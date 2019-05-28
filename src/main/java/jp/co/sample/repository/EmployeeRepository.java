@@ -22,6 +22,7 @@ public class EmployeeRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 	
+	/** 検索結果から従業員情報を作成するRowMapper */
 	private RowMapper<Employee> EMPLOYEE_ROW_MAPPER = (rs, i) ->{
 		Employee employee = new Employee();
 		employee.setId(rs.getInt("id"));
@@ -40,8 +41,9 @@ public class EmployeeRepository {
 	};
 	
 	/**
-	 * 全件検索するメソッド
-	 * @return employeeList
+	 * 全件検索する.
+	 * 
+	 * @return employeeList 従業員リスト
 	 */
 	public List<Employee> findAll(){
 		String sql = "select * from employees order by hire_date;";

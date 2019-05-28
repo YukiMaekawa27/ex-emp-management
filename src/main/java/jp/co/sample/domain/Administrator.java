@@ -1,5 +1,10 @@
 package jp.co.sample.domain;
 
+/**
+ * 管理者情報を表すドメイン.
+ * @author yuki
+ *
+ */
 public class Administrator {
 
 	/** ID */

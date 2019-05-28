@@ -1,6 +1,8 @@
 package jp.co.sample.form;
 
 /**
+ * ログイン時に使われるフォーム.
+ * 
  * @author yuki
  *
  */

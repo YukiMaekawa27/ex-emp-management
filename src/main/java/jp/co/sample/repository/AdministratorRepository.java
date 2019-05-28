@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 import jp.co.sample.domain.Administrator;
 
 /**
+ * 管理者テーブルを操作するリポジトリ.
+ * 
  * @author yuki
  *
  */
@@ -30,27 +32,33 @@ public class AdministratorRepository {
 	};
 
 	/**
-	 * insertメソッド
-	 * 引数のadministratorをデータベースに挿入
-	 * @param administrator　
+	 * 管理者情報を登録する.
+	 * 
+	 * @param administrator 管理者情報　
 	 */
 	public void insert(Administrator administrator) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
-		String sql = "insert into administrators (name, mail_address, password) values ( :name,:mailAddress,:password)";
+		String sql = "insert into administrators (name, mail_address, password) "
+				   + "values ( :name,:mailAddress,:password)";
 		template.update(sql, param);
 	}
 
 	/**
-	 * findByMailAddressAndPasswordメソッド
-	 * 引数で受け取ったmailAddressとpasswordから従業員情報を検索する
-	 * @param mailAddress
-	 * @param password
-	 * @return administrator
+	 * メールアドレス、パスワードから管理者情報を検索.
+	 * 
+	 * @param mailAddress メールアドレス
+	 * @param password パスワード
+	 * @return administrator 管理者情報
 	 */
 	public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
-		String sql = "select id,name,mail_address,password from administrator where mail_address=:mailAddress and password=:password;";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress).addValue("password", password);
-		Administrator administorator = template.queryForObject(sql, param, ADMINISTRATOR_ROW_MAPPER);
+		String sql = "select id,name,mail_address,password "
+				   + "from administrator "
+				   + "where mail_address=:mailAddress and password=:password;";
+		SqlParameterSource param = new MapSqlParameterSource()
+				.addValue("mailAddress", mailAddress)
+				.addValue("password", password);
+		Administrator administorator 
+				= template.queryForObject(sql, param, ADMINISTRATOR_ROW_MAPPER);
 		return administorator;
 	}
 }

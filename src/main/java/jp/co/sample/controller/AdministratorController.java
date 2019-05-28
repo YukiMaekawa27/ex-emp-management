@@ -12,6 +12,8 @@ import jp.co.sample.form.LoginForm;
 import jp.co.sample.service.AdministratorService;
 
 /**
+ * パスの受け渡しを行うクラス.
+ * 
  * @author yuki
  *
  */
@@ -33,7 +35,8 @@ public class AdministratorController {
 	}
 
 	/**
-	 * @return 最初の入力画面を表示させる
+	 * 最初の入力画面へ遷移.
+	 * @return 入力画面
 	 */
 	@RequestMapping("/toInsert")
 	public String toInsert() {
@@ -41,10 +44,10 @@ public class AdministratorController {
 	}
 
 	/**
-	 * 入力された情報をデータベースへ挿入する
+	 * データベースへ挿入.
 	 * 
 	 * @param form
-	 * @return "/"へリダイレクト処理を行う
+	 * @return リダイレクト処理
 	 */
 	@RequestMapping("/insert")
 	public String insert(InsertAdministratorForm form) {
@@ -55,7 +58,9 @@ public class AdministratorController {
 	}
 
 	/**
-	 * @return リダイレクトされたパスを受け取りlognin．htmlにフォアードする
+	 * 管理者登録画面へ遷移.
+	 * 
+	 * @return 管理者登録画面
 	 */
 	@RequestMapping("/")
 	public String toLogin() {
