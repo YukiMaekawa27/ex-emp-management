@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.sample.domain.Employee;
-import jp.co.sample.repository.AdministratorRepository;
 import jp.co.sample.repository.EmployeeRepository;
 
 /**
@@ -23,9 +22,11 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
 
-	@Autowired
-	private AdministratorRepository administratorRepository;
-
+	/**
+	 * 従業員一覧を実行するクラス.
+	 * 
+	 * @return 従業員一覧
+	 */
 	public List<Employee> showList() {
 		List<Employee> employeeList = employeeRepository.findAll();
 		return employeeList;

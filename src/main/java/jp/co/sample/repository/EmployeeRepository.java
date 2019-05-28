@@ -32,7 +32,7 @@ public class EmployeeRepository {
 		employee.setImage(rs.getString("image"));
 		employee.setGender(rs.getString("gender"));
 		employee.setHireDate(rs.getDate("hire_date"));
-		employee.setMailAddress(rs.getString("mail_adress"));
+		employee.setMailAddress(rs.getString("mail_address"));
 		employee.setZipCode(rs.getString("zip_code"));
 		employee.setAddress(rs.getString("address"));
 		employee.setTelephone(rs.getString("telephone"));
@@ -48,7 +48,7 @@ public class EmployeeRepository {
 	 * @return employeeList 従業員リスト
 	 */
 	public List<Employee> findAll(){
-		String sql = "select id,name,image,gender,hire_date,mail_address,telephone,salary,characteristics,dependents_count "
+		String sql = "select id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count "
 				   + "from employees order by hire_date;";
 		List<Employee> emloyeeList = template.query(sql, EMPLOYEE_ROW_MAPPER);
 		return emloyeeList;

@@ -90,8 +90,8 @@ public class AdministratorController {
 			result.rejectValue("mailAddress", null, "メールアドレスまたはパスワードが不正です。");
 			return "/administrator/login.html";
 		} else {
-			session.setAttribute("administratorName", administorator);
-			return "forward:/employee/showlist";
+			session.setAttribute("administratorName", administorator.getName());
+			return "forward:/employee/showList";
 		} 
 	}
 

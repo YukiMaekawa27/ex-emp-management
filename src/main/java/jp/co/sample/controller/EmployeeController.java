@@ -1,6 +1,5 @@
 package jp.co.sample.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +31,9 @@ public class EmployeeController {
 	 */
 	@RequestMapping("/showList")
 	public String showList(Model model) {
-		List<Employee> employeeList = new ArrayList<>();
-		employeeList = employeeService.showList();
+		List<Employee> employeeList = employeeService.showList();
 		model.addAttribute("employeeList", employeeList);
-		return "/employee/list.html";
+		return "employee/list";
 	}
 
 }
