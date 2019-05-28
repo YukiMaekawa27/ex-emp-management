@@ -69,7 +69,7 @@ public class Employee {
 		return mailAddress;
 	}
 
-	public void setMdailAddress(String email) {
+	public void setMailAddress(String email) {
 		this.mailAddress = email;
 	}
 
