@@ -48,7 +48,7 @@ public class EmployeeController {
 		Employee employee = employeeService.showDetail(Integer.parseInt(id));
 		model.addAttribute("employee", employee);
 		System.out.println(employee);
-		return "forward:/employee/detail.html";
+		return "redirect:/employee/showList";
 	}
 
 }
