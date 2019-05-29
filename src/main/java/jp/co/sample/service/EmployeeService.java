@@ -38,7 +38,7 @@ public class EmployeeService {
 	 * @param 従業員ID
 	 * @return 従業員一覧用詳細情報
 	 */
-	public Employee showDetail(Integer id) {
+	public Employee load(Integer id) {
 		Employee employee = employeeRepository.load(id);
 		return employee;
 	}
@@ -48,8 +48,8 @@ public class EmployeeService {
 	 * 
 	 * @param 不要人数を更新するための従業員情報
 	 */
-	public void update(Employee employee) {
-		employeeRepository.update(employee);
+	public Employee update(Employee employee) {
+		return employeeRepository.update(employee);
 	}
 
 }

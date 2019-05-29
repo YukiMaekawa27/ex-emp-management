@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -84,7 +85,7 @@ public class AdministratorController {
 	 * @return 従業員一覧
 	 */
 	@RequestMapping("/login")
-	public String login(LoginForm form, BindingResult result) {
+	public String login(@Validated LoginForm form, BindingResult result) {
 		Administrator administorator = service.login(form.getMailAddress(), form.getPassword());
 		if (administorator == null) {
 			result.rejectValue("mailAddress", null, "メールアドレスまたはパスワードが不正です。");

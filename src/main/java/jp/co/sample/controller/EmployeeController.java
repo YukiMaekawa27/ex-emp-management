@@ -2,6 +2,7 @@ package jp.co.sample.controller;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,8 +52,8 @@ public class EmployeeController {
 	 * @return 従業員一覧を表示
 	 */
 	@RequestMapping("/showDetail")
-	public String showDetail(String id, Model model) {
-		Employee employee = employeeService.showDetail(Integer.parseInt(id));
+	public String showDetail(String id, Model model, UpdateEmployeeForm form) {
+		Employee employee = employeeService.load(Integer.parseInt(id));
 		model.addAttribute("employee", employee);
 		System.out.println(employee);
 		return "employee/detail";
@@ -65,12 +66,28 @@ public class EmployeeController {
 	 * @param 新しい扶養人数が入ったフォーム
 	 * @return 従業員一覧を表示
 	 */
-	@RequestMapping("/update")
-	public String update(Integer id, UpdateEmployeeForm form) {
-		Employee employee = employeeService.showDetail(id);
-		employee.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
+	@RequestMapping("/edit")
+	public String update(Integer id, UpdateEmployeeForm form, Model model) {
+		Employee employee = employeeService.load(id);
+		BeanUtils.copyProperties(employee, form);
+		form.setId(String.valueOf(employee.getId()));
+		form.setSalary(String.valueOf(employee.getSalary()));
+		form.setDependentsCount(String.valueOf(employee.getDependentsCount()));
 		employeeService.update(employee);
-		return "redirect:/employee/showList";
+		model.addAttribute(employee);
+		model.addAttribute(form);
+		return "employee/updateemployee";
+	}
+	
+	@RequestMapping("/save")
+	public String save(UpdateEmployeeForm form, Model model) {
+		Employee employee = employeeService.load(form.getIntId());
+		BeanUtils.copyProperties(form, employee);
+		employee.setId(Integer.parseInt(form.getId()));
+		employee.setSalary(Integer.parseInt(form.getSalary()));
+		employee.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
+		employee = employeeService.update(employee);
+		return showDetail(""+employee.getId(), model, form);
 	}
 
 }
