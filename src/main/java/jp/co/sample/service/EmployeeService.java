@@ -42,5 +42,14 @@ public class EmployeeService {
 		Employee employee = employeeRepository.load(id);
 		return employee;
 	}
+	
+	/**
+	 * 従業員の不要人数を更新するクラス.
+	 * 
+	 * @param 不要人数を更新するための従業員情報
+	 */
+	public void update(Employee employee) {
+		employeeRepository.update(employee);
+	}
 
 }
