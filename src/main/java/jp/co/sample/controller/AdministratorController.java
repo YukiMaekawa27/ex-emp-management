@@ -94,5 +94,16 @@ public class AdministratorController {
 			return "forward:/employee/showList";
 		} 
 	}
+	
+	/**
+	 * ログアウトをする.
+	 * 
+	 * @return ログイン画面を表示
+	 */
+	@RequestMapping("/logout")
+	public String logout() {
+		session.invalidate();
+		return "redirect:/";
+	}
 
 }
