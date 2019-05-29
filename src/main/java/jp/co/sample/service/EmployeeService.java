@@ -33,7 +33,7 @@ public class EmployeeService {
 	}
 	
 	/**
-	 * 従業員一覧用の従業員情報を返すクラス
+	 * 従業員一覧用の従業員情報を返すクラス.
 	 * 
 	 * @param 従業員ID
 	 * @return 従業員一覧用詳細情報

@@ -33,7 +33,7 @@ public class EmployeeController {
 	/**
 	 * 従業員一覧を出力するメソッド.
 	 * 
-	 * @param model
+	 * @param リクエストパラメータ
 	 * @return 従業員一覧を表示
 	 */
 	@RequestMapping("/showList")
@@ -43,6 +43,13 @@ public class EmployeeController {
 		return "employee/list";
 	}
 	
+	/**
+	 * 従業員詳細を出力するメソッド.
+	 * 
+	 * @param 社員ID
+	 * @param リクエストパラメータ
+	 * @return 従業員一覧を表示
+	 */
 	@RequestMapping("/showDetail")
 	public String showDetail(String id, Model model) {
 		Employee employee = employeeService.showDetail(Integer.parseInt(id));
